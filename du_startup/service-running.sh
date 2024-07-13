@@ -2,10 +2,10 @@
 
 echo "Starting setup-du.service to setup the Virtual functions and start all the services"
 
-source /usr/sbin/setup-du/vf-setup-du.sh
-source /usr/sbin/setup-du/config-oai-to-sdcore.sh
-source /usr/sbin/setup-du/config-sdcore-to-oai.sh
-source /usr/sbin/setup-du/.env
+source ./vf-setup-du.sh
+source ./config-oai-to-sdcore.sh
+source ./config-sdcore-to-oai.sh
+source ./.env
 
 # Define the service name
 SERVICE_LIST="ptp4l 

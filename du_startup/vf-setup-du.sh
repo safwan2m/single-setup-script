@@ -1,11 +1,12 @@
 #!/bin/bash
 
 vf-setup-du(){
-	source /usr/sbin/setup-du/.env
+	source ./.env
 	echo ----------------------- vf-setup --------------------------------
 	echo [vf-setup] Creating 2 virtual functions
 	echo 2 > /sys/bus/pci/devices/0000:$FH_NIC_BUS_ID/sriov_numvfs
 
+	sleep 1
 	echo [vf-setup] Loading igb_uio driver into kernel modules.
 	if lsmod | grep -q uio; then
 	    	echo "UIO module is loaded"
@@ -17,12 +18,14 @@ vf-setup-du(){
 	    	echo "IGB_UIO module is loaded"
 	else
 	    	echo "IGB_UIO module is not loaded"
-		insmod /home/nr5glab/dpdk-kmods/linux/igb_uio/igb_uio.ko
+		insmod /home/$USER/dpdk-kmods/linux/igb_uio/igb_uio.ko
 	fi
 	
+	sleep 1
 	echo [vf-setup] Setting MAC addresses for the virtual functions.
 	ip link set $FH_INTERFACE vf 0 mac $FH_MAC vlan $FH_CU_VLAN trust on mtu $FH_MTU
 	ip link set $FH_INTERFACE vf 0 spoofchk off
+	sleep 1
 	ip link set $FH_INTERFACE vf 1 mac $FH_MAC vlan $FH_CU_VLAN trust on mtu $FH_MTU
 	ip link set $FH_INTERFACE vf 1 spoofchk off
 
@@ -36,8 +39,8 @@ vf-setup-du(){
 	FH_NIC_VIRT1_BUS_ID=${bus_ids[0]}
 	FH_NIC_VIRT2_BUS_ID=${bus_ids[1]}
 
-	ip link set '$FH_INTERFACE'vf0 down
-	ip link set '$FH_INTERFACE'vf1 down
+	ip link set "$FH_INTERFACE"v0 down
+	ip link set "$FH_INTERFACE"v1 down
 
 	sleep 1
 
