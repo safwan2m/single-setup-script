@@ -1,0 +1,12 @@
+[Unit]
+Decription=Setup the DU and check if all the services are running
+After=network.target
+
+[Service]
+Type=oneshot
+
+ExecStart=/usr/sbin/setup-du/service-running.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.target
