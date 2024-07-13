@@ -4,7 +4,7 @@ Documentation=man:ptp4l
 
 [Service]
 Type=simple
-ExecStart=/usr/local/sbin/ptp4l -i interface_name -E -2 -H -l 6 -f /etc/linuxptp/iisc_config.cfg
+ExecStart=/usr/sbin/ptp4l -i interface_name -E -2 -H -l 6 -f /etc/linuxptp/iisc_config.cfg
 
 [Install]
 WantedBy=multi-user.target
