@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "[PTP] installing linuxptp application as Grandmaster for LLS-C1 configuration"
 source .env
 
 apt install linuxptp
@@ -14,7 +15,9 @@ if [ "$install_version" = "3.1.1" ]; then
 	cp iisc_config.cfg /etc/linuxptp/.
 	sed -i "s/interface_name/$PTP_INTERFACE/g" "$PTP4L_FILE_PATH"
 	sed -i "s/interface_name/$PTP_INTERFACE/g" "$PHC2SYS_FILE_PATH"
-	echo "ptp installed successfully"
+	systemctl enable ptp4l.service
+	systemctl enable phc2sys.service
+	echo "[Done] ptp installed and enabled successfully"
 else 
 	echo "ptp version not installed please install and try again"
 fi
