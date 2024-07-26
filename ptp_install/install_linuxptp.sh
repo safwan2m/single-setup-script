@@ -15,6 +15,7 @@ if [ "$install_version" = "3.1.1" ]; then
 	cp iisc_config.cfg /etc/linuxptp/.
 	sed -i "s/interface_name/$PTP_INTERFACE/g" "$PTP4L_FILE_PATH"
 	sed -i "s/interface_name/$PTP_INTERFACE/g" "$PHC2SYS_FILE_PATH"
+	systemctl daemon-reload
 	systemctl enable ptp4l.service
 	systemctl enable phc2sys.service
 	echo "[Done] ptp installed and enabled successfully"

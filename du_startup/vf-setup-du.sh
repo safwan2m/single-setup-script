@@ -23,10 +23,10 @@ vf-setup-du(){
 	
 	sleep 1
 	echo [vf-setup] Setting MAC addresses for the virtual functions.
-	ip link set $FH_INTERFACE vf 0 mac $FH_MAC vlan $FH_CU_VLAN trust on mtu $FH_MTU
+	ip link set $FH_INTERFACE vf 0 mac $FH_MAC_1 vlan $FH_CU_VLAN trust on mtu $FH_MTU
 	ip link set $FH_INTERFACE vf 0 spoofchk off
 	sleep 1
-	ip link set $FH_INTERFACE vf 1 mac $FH_MAC vlan $FH_CU_VLAN trust on mtu $FH_MTU
+	ip link set $FH_INTERFACE vf 1 mac $FH_MAC_2 vlan $FH_CU_VLAN trust on mtu $FH_MTU
 	ip link set $FH_INTERFACE vf 1 spoofchk off
 
 	# Capture the output of the lspci command
